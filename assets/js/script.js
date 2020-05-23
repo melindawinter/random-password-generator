@@ -68,17 +68,20 @@ var numArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 //This function collects the data the user puts in through a prompt and confirms
 function getOptions() {
-  var userLengthChoice = parseInt(
+  var passwordLengthChoice = parseInt(
     prompt(
       "How long would you like your password to be? Choose between 8 and 128 characters."
     )
   );
-  if (userLengthChoice < 8) {
+  if (passwordLengthChoice < 8) {
     alert("Please pick a longer password. Click the button again.");
     return;
   }
-  if (userLengthChoice > 128) {
+  if (passwordLengthChoice > 128) {
+    alert("Please pick a shorter password. Click the button again");
+    return;
   }
+
   var specialCharChoice = confirm("Would you like to use special characters?");
   var lowerCaseChoice = confirm("Would you like to use lower case letters?");
   var upperCaseChoice = confirm("Would you like to use upper case letters?");
@@ -87,15 +90,14 @@ function getOptions() {
   if (
     specialCharChoice === false &&
     lowerCaseChoice === false &&
-    upperCase === false &&
+    upperCaseChoice === false &&
     numArrayChoice === false
   ) {
-    alert("You must pick at least one option.");
+    alert("You must pick at least one option. Click the button again.");
     return;
   }
 
   var userChoices = {
-    userLengthChoice: userLengthChoice,
     specialCharChoice: specialCharChoice,
     lowerCaseChoice: lowerCaseChoice,
     upperCaseChoice: upperCaseChoice,
@@ -105,14 +107,14 @@ function getOptions() {
   return userChoices;
 }
 
-// This function choses items from the user input arrays
+// This function chooses items from the user input arrays
 function getRandomItem(arr) {
   var randomIndex = Math.floor(Math.random() * arr.length);
   var randomSelection = arr[randomIndex];
   return randomSelection;
 }
 
-// This function takes the information given by the user and
+// This function takes the information given by the user and generates the password
 function generatePassword() {
   var passwordOptions = getOptions();
   var finalPassword = [];
@@ -123,17 +125,17 @@ function generatePassword() {
     chosenArrays = chosenArrays.concat(specialChar);
     chosenCharOptions.push(getRandomItem(specialChar));
   }
-  if (passwordOptions.specialCharChoice) {
-    chosenArrays = chosenArrays.concat(specialChar);
-    chosenCharOptions.push(getRandomItem(specialChar));
+  if (passwordOptions.lowerCaseChoice) {
+    chosenArrays = chosenArrays.concat(lowerCase);
+    chosenCharOptions.push(getRandomItem(lowerCase));
   }
-  if (passwordOptions.specialCharChoice) {
-    chosenArrays = chosenArrays.concat(specialChar);
-    chosenCharOptions.push(getRandomItem(specialChar));
+  if (passwordOptions.upperCaseChoice) {
+    chosenArrays = chosenArrays.concat();
+    chosenCharOptions.push(getRandomItem(upperCase));
   }
-  if (passwordOptions.specialCharChoice) {
-    chosenArrays = chosenArrays.concat(specialChar);
-    chosenCharOptions.push(getRandomItem(specialChar));
+  if (passwordOptions.numArrayChoice) {
+    chosenArrays = chosenArrays.concat(numArray);
+    chosenCharOptions.push(getRandomItem(numArray));
   }
 
   for (var i = 0; i < passwordOptions.length; i++) {
@@ -150,10 +152,8 @@ function generatePassword() {
 // Write password to the #password input
 
 function writePassword() {
-  // you can create a function named generatePassword that creates the password
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 }
 
