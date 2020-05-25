@@ -62,9 +62,13 @@ var upperCase = [
 ];
 //Numbers
 var numArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
 //End global variables
 
 // Start functions here
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 //This function collects the data the user puts in through a prompt and confirms
 function getUserInput() {
@@ -90,6 +94,12 @@ function getUserInput() {
       "Please pick a numerical value between 8 and 128. Click the Generate Password button again."
     );
     return;
+  }
+  if (passwordLengthChoice > 7 && passwordLengthChoice < 129) {
+    alert(
+      "Your password will be " + passwordLengthChoice + " characters long."
+    );
+    console.log(passwordLengthChoice);
   }
 
   var specialCharChoice = confirm("Would you like to use special characters?");
@@ -129,36 +139,37 @@ function getRandomItem(arr) {
 
 // This function takes the information given by the user and generates the password
 function generatePassword() {
-  var passwordOptions = getUserInput();
+  var passwordComponents = getUserInput();
   var finalPassword = [];
   var chosenArrays = [];
   var chosenCharOptions = [];
 
-  if (passwordOptions.specialCharChoice) {
+  if (passwordComponents.specialCharChoice) {
     chosenArrays = chosenArrays.concat(specialChar);
     chosenCharOptions.push(getRandomItem(specialChar));
   }
-  if (passwordOptions.lowerCaseChoice) {
+  if (passwordComponents.lowerCaseChoice) {
     chosenArrays = chosenArrays.concat(lowerCase);
     chosenCharOptions.push(getRandomItem(lowerCase));
   }
-  if (passwordOptions.upperCaseChoice) {
+  if (passwordComponents.upperCaseChoice) {
     chosenArrays = chosenArrays.concat();
     chosenCharOptions.push(getRandomItem(upperCase));
   }
-  if (passwordOptions.numArrayChoice) {
+  if (passwordComponents.numArrayChoice) {
     chosenArrays = chosenArrays.concat(numArray);
     chosenCharOptions.push(getRandomItem(numArray));
   }
 
-  for (var i = 0; i < passwordOptions.length; i++) {
+  for (var i = 0; i < passwordComponents.passwordLengthChoice; i++) {
     var finalPasswordItem = getRandomItem(chosenArrays);
     finalPassword.push(finalPasswordItem);
   }
+
   for (var i = 0; i < chosenCharOptions.length; i++) {
     finalPassword[i] = chosenCharOptions[i];
   }
-  console.log(finalPassword);
+
   return finalPassword.join("");
 }
 
@@ -169,6 +180,3 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
