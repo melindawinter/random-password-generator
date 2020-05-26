@@ -70,7 +70,7 @@ var numArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 // Add event listener to Generate Password button
 generateBtn.addEventListener("click", writePassword);
 
-//This function collects the data the user puts in through a prompt and confirms
+//Collect the data the user puts in through a prompt and confirms
 function getUserInput() {
   var passwordLengthChoice = parseInt(
     prompt(
@@ -130,14 +130,14 @@ function getUserInput() {
   return userChoices;
 }
 
-// This function chooses items from the user input arrays
+// Randomizer utility function
 function getRandomItem(arr) {
   var randomIndex = Math.floor(Math.random() * arr.length);
   var randomSelection = arr[randomIndex];
   return randomSelection;
 }
 
-// This function takes the information given by the user and generates the password
+// Take the information given by the user and generate the password
 function generatePassword() {
   var passwordComponents = getUserInput();
   var finalPassword = [];
