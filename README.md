@@ -17,6 +17,7 @@ Thank you to my boot camp instructor, Joe Tanksley, and TA, Adam Abundis, as wel
 As usual, I found a lot of great resources from W3 Schools and Codecademy. I will also post a few links for other resources I found useful.
 
 <https://youtu.be/9sT03jEwcaw>
+
 <https://webdevtrick.com/javascript-random-password-generator/>
 
 ## License
