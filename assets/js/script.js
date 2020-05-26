@@ -1,7 +1,7 @@
 // Assign global variables
 var generateBtn = document.querySelector("#generate");
 // Special characters
-var specialChar = ["@", "#", "$", "%", "^", "&", "*"];
+var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*"];
 // Lower case letters
 var lowerCase = [
   "a",
@@ -67,7 +67,7 @@ var numArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 // Start functions here
 
-// Add event listener to generate button
+// Add event listener to Generate Password button
 generateBtn.addEventListener("click", writePassword);
 
 //This function collects the data the user puts in through a prompt and confirms
@@ -180,3 +180,14 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
+
+//Copy the text using the Copy Password Button
+
+var copyBtn = document.querySelector("#copy");
+copyBtn.addEventListener("click", function () {
+  if (writePassword) {
+    document.getElementById("password").select();
+    document.execCommand("Copy");
+    alert("Your password has been copied to your clipboard.");
+  }
+});
