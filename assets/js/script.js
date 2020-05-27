@@ -102,10 +102,18 @@ function getUserInput() {
     console.log(passwordLengthChoice);
   }
 
-  var specialCharChoice = confirm("Would you like to use special characters?");
-  var lowerCaseChoice = confirm("Would you like to use lower case letters?");
-  var upperCaseChoice = confirm("Would you like to use upper case letters?");
-  var numArrayChoice = confirm("Would you like to use numbers?");
+  var specialCharChoice = confirm(
+    "Would you like to use special characters? Click OK for yes or Cancel for no."
+  );
+  var lowerCaseChoice = confirm(
+    "Would you like to use lower case letters? Click OK for yes or Cancel for no."
+  );
+  var upperCaseChoice = confirm(
+    "Would you like to use upper case letters? Click OK for yes or Cancel for no."
+  );
+  var numArrayChoice = confirm(
+    "Would you like to use numbers? Click OK for yes or Cancel for no."
+  );
 
   if (
     specialCharChoice === false &&
